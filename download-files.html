@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Project Files</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .file-item {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .download-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .download-btn:hover {
+            background: #0056b3;
+        }
+        .file-name {
+            font-weight: bold;
+            color: #333;
+        }
+        .file-content {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Download Project Files</h1>
+    <p>Click the download buttons below to save each file:</p>
+
+    <div class="file-item">
+        <div class="file-name">package.json</div>
+        <button class="download-btn" onclick="downloadFile('package.json', packageJson)">Download</button>
+        <div class="file-content" id="package-preview"></div>
+    </div>
+
+    <div class="file-item">
+        <div class="file-name">src/App.tsx</div>
+        <button class="download-btn" onclick="downloadFile('App.tsx', appTsx)">Download</button>
+        <div class="file-content" id="app-preview"></div>
+    </div>
+
+    <div class="file-item">
+        <div class="file-name">src/main.tsx</div>
+        <button class="download-btn" onclick="downloadFile('main.tsx', mainTsx)">Download</button>
+        <div class="file-content" id="main-preview"></div>
+    </div>
+
+    <div class="file-item">
+        <div class="file-name">src/index.css</div>
+        <button class="download-btn" onclick="downloadFile('index.css', indexCss)">Download</button>
+        <div class="file-content" id="css-preview"></div>
+    </div>
+
+    <div class="file-item">
+        <div class="file-name">index.html</div>
+        <button class="download-btn" onclick="downloadFile('index.html', indexHtml)">Download</button>
+        <div class="file-content" id="html-preview"></div>
+    </div>
+
+    <div class="file-item">
+        <div class="file-name">tailwind.config.js</div>
+        <button class="download-btn" onclick="downloadFile('tailwind.config.js', tailwindConfig)">Download</button>
+        <div class="file-content" id="tailwind-preview"></div>
+    </div>
+
+    <div class="file-item">
+        <div class="file-name">vite.config.ts</div>
+        <button class="download-btn" onclick="downloadFile('vite.config.ts', viteConfig)">Download</button>
+        <div class="file-content" id="vite-preview"></div>
+    </div>
+
+    <button class="download-btn" onclick="downloadAll()" style="background: #28a745; margin-top: 20px; padding: 12px 24px; font-size: 16px;">
+        Download All Files as ZIP
+    </button>
+
+    <script>
+        const packageJson = `{
+  "name": "vite-react-typescript-starter",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lucide-react": "^0.344.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.1",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.18",
+    "eslint": "^9.9.1",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.11",
+    "globals": "^15.9.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.3.0",
+    "vite": "^5.4.2"
+  }
+}`;
+
+        const appTsx = \`import React, { useState, useEffect } from 'react';
+import { Heart } from 'lucide-react';
+
+function App() {
+  const [showFlowers, setShowFlowers] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const [showMessage1, setShowMessage1] = useState(false);
+  const [showMessage2, setShowMessage2] = useState(false);
+  const [showMessage3, setShowMessage3] = useState(false);
+  const [showPhoto, setShowPhoto] = useState(false);
+
+  useEffect(() => {
+    // Show flowers covering entire screen first
+    setTimeout(() => setShowFlowers(true), 300);
+    
+    // Then show content container from middle
+    setTimeout(() => setShowContent(true), 2000);
+    
+    // Sequential message display
+    setTimeout(() => setShowMessage1(true), 3000);
+    setTimeout(() => setShowMessage2(true), 5000);
+    setTimeout(() => setShowMessage3(true), 7000);
+    setTimeout(() => setShowPhoto(true), 9000);
+  }, []);
+
+  // Create more flowers to cover entire screen
+  const flowers = Array.from({ length: 120 }, (_, i) => ({
+    id: i,
+    emoji: i % 3 === 0 ? '🌻' : i % 3 === 1 ? '🌹' : '🌼',
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    delay: Math.random() * 1500,
+    size: 30 + Math.random() * 50,
+    rotation: Math.random() * 360,
+  }));
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-orange-50 to-pink-100 relative overflow-hidden">
+      {/* Full Screen Flowers */}
+      {flowers.map((flower) => (
+        <div
+          key={flower.id}
+          className={\`absolute transition-all duration-2000 ease-out z-10 \${
+            showFlowers ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+          } \${
+            showContent ? 'opacity-30 scale-75' : ''
+          }\`}
+          style={{
+            left: \`\${flower.left}%\`,
+            top: \`\${flower.top}%\`,
+            fontSize: \`\${flower.size}px\`,
+            transitionDelay: \`\${flower.delay}ms\`,
+            transform: \`rotate(\${flower.rotation}deg) \${showFlowers ? 'scale(1)' : 'scale(0)'}\`,
+            filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))',
+          }}
+        >
+          {flower.emoji}
+        </div>
+      ))}
+
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-200 rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-pink-200 rounded-full opacity-20 animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-orange-200 rounded-full opacity-20 animate-pulse delay-500"></div>
+      </div>
+
+      {/* Main Content - Appears from Middle */}
+      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4">
+        <div
+          className={\`transition-all duration-1500 transform \${
+            showContent 
+              ? 'opacity-100 scale-100 translate-y-0' 
+              : 'opacity-0 scale-50 translate-y-10'
+          } bg-white/95 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-2xl max-w-2xl mx-auto border border-white/50\`}
+        >
+          <div className="mb-8">
+            <Heart className="w-16 h-16 text-red-500 mx-auto animate-pulse" fill="currentColor" />
+          </div>
+
+          {/* Message 1 */}
+          <div
+            className={\`transition-all duration-1000 transform \${
+              showMessage1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }\`}
+          >
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 font-serif text-center">
+              <span className="text-yellow-600 drop-shadow-sm">Nana bangaram</span>{' '}
+              <span className="text-red-500">sorry</span>{' '}
+              <span className="text-blue-600 drop-shadow-sm">cool down</span> 💛
+            </h1>
+          </div>
+
+          {/* Message 2 */}
+          <div
+            className={\`transition-all duration-1000 transform \${
+              showMessage2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }\`}
+          >
+            <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed text-center">
+              <span className="text-pink-600 font-semibold">Kopam lo kuda bagunav</span>{' '}
+              <span className="text-gray-600">but</span>{' '}
+              <span className="text-green-600 font-semibold">navuthe inka bagunthav</span> 😊
+            </p>
+          </div>
+
+          {/* Message 3 */}
+          <div
+            className={\`transition-all duration-1000 transform \${
+              showMessage3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }\`}
+          >
+            <p className="text-lg md:text-xl text-gray-600 mb-8 italic text-center">
+              <span className="text-purple-600 font-medium">Kavalante nuve chusuko</span> 💕
+            </p>
+          </div>
+
+          {/* Photo Section */}
+          <div
+            className={\`transition-all duration-1000 transform \${
+              showPhoto ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }\`}
+          >
+            <div className="bg-gradient-to-r from-yellow-200 to-pink-200 rounded-2xl p-6 border-4 border-white shadow-inner">
+              <div className="w-full rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src="./src/assets/bangaram.jpg" 
+                  alt="Special photo for Aishu" 
+                  className="w-full h-auto object-cover rounded-xl border-4 border-white shadow-md"
+                  style={{ maxHeight: '400px' }}
+                />
+              </div>
+              <p className="text-center text-pink-600 font-medium mt-4 text-lg">💕 For  beautiful Aishu 💕</p>
+            </div>
+          </div>
+
+          {/* Decorative Elements */}
+          <div className="flex justify-center space-x-4 mt-8">
+            <span className="text-2xl animate-bounce">💛</span>
+            <span className="text-2xl animate-bounce delay-100">🌻</span>
+            <span className="text-2xl animate-bounce delay-200">🌹</span>
+            <span className="text-2xl animate-bounce delay-300">💛</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Hearts */}
+      <div className="absolute inset-0 pointer-events-none z-5">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute animate-float"
+            style={{
+              left: \`\${5 + i * 12}%\`,
+              top: \`\${15 + (i % 3) * 25}%\`,
+              animationDelay: \`\${i * 0.7}s\`,
+              fontSize: '20px',
+            }}
+          >
+            💛
+          </div>
+        ))}
+      </div>
+
+      <style jsx>{\`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-15px) rotate(3deg); }
+        }
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
+      \`}</style>
+    </div>
+  );
+}
+
+export default App;\`;
+
+        const mainTsx = \`import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);\`;
+
+        const indexCss = \`@tailwind base;
+@tailwind components;
+@tailwind utilities;\`;
+
+        const indexHtml = \`<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorry Aishu 💛</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(5deg); }
+      }
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+      .font-serif {
+        font-family: 'Playfair Display', serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>\`;
+
+        const tailwindConfig = \`/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};\`;
+
+        const viteConfig = \`import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  optimizeDeps: {
+    exclude: ['lucide-react'],
+  },
+});\`;
+
+        function downloadFile(filename, content) {
+            const element = document.createElement('a');
+            const file = new Blob([content], {type: 'text/plain'});
+            element.href = URL.createObjectURL(file);
+            element.download = filename;
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        function downloadAll() {
+            const files = [
+                {name: 'package.json', content: packageJson},
+                {name: 'App.tsx', content: appTsx},
+                {name: 'main.tsx', content: mainTsx},
+                {name: 'index.css', content: indexCss},
+                {name: 'index.html', content: indexHtml},
+                {name: 'tailwind.config.js', content: tailwindConfig},
+                {name: 'vite.config.ts', content: viteConfig}
+            ];
+            
+            files.forEach(file => {
+                setTimeout(() => downloadFile(file.name, file.content), 100);
+            });
+        }
+
+        // Show previews
+        document.getElementById('package-preview').textContent = packageJson.substring(0, 200) + '...';
+        document.getElementById('app-preview').textContent = appTsx.substring(0, 200) + '...';
+        document.getElementById('main-preview').textContent = mainTsx.substring(0, 200) + '...';
+        document.getElementById('css-preview').textContent = indexCss;
+        document.getElementById('html-preview').textContent = indexHtml.substring(0, 200) + '...';
+        document.getElementById('tailwind-preview').textContent = tailwindConfig;
+        document.getElementById('vite-preview').textContent = viteConfig;
+    </script>
+</body>
+</html>
