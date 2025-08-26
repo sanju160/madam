@@ -10,20 +10,14 @@ function App() {
   const [showPhoto, setShowPhoto] = useState(false);
 
   useEffect(() => {
-    // Show flowers covering entire screen first
     setTimeout(() => setShowFlowers(true), 300);
-    
-    // Then show content container from middle
     setTimeout(() => setShowContent(true), 2000);
-    
-    // Sequential message display
     setTimeout(() => setShowMessage1(true), 3000);
     setTimeout(() => setShowMessage2(true), 5000);
     setTimeout(() => setShowMessage3(true), 7000);
     setTimeout(() => setShowPhoto(true), 9000);
   }, []);
 
-  // Create more flowers to cover entire screen
   const flowers = Array.from({ length: 120 }, (_, i) => ({
     id: i,
     emoji: i % 3 === 0 ? '🌻' : i % 3 === 1 ? '🌹' : '🌼',
@@ -42,15 +36,15 @@ function App() {
           key={flower.id}
           className={`absolute transition-all duration-2000 ease-out z-10 ${
             showFlowers ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
-          } ${
-            showContent ? 'opacity-30 scale-75' : ''
-          }`}
+          } ${showContent ? 'opacity-30 scale-75' : ''}`}
           style={{
             left: `${flower.left}%`,
             top: `${flower.top}%`,
             fontSize: `${flower.size}px`,
             transitionDelay: `${flower.delay}ms`,
-            transform: `rotate(${flower.rotation}deg) ${showFlowers ? 'scale(1)' : 'scale(0)'}`,
+            transform: `rotate(${flower.rotation}deg) ${
+              showFlowers ? 'scale(1)' : 'scale(0)'
+            }`,
             filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))',
           }}
         >
@@ -58,19 +52,19 @@ function App() {
         </div>
       ))}
 
-      {/* Animated Background Elements */}
+      {/* Background circles */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-200 rounded-full opacity-20 animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-40 h-40 bg-pink-200 rounded-full opacity-20 animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-orange-200 rounded-full opacity-20 animate-pulse delay-500"></div>
       </div>
 
-      {/* Main Content - Appears from Middle */}
+      {/* Main Content */}
       <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4">
         <div
           className={`transition-all duration-1500 transform ${
-            showContent 
-              ? 'opacity-100 scale-100 translate-y-0' 
+            showContent
+              ? 'opacity-100 scale-100 translate-y-0'
               : 'opacity-0 scale-50 translate-y-10'
           } bg-white/95 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-2xl max-w-2xl mx-auto border border-white/50`}
         >
@@ -78,7 +72,7 @@ function App() {
             <Heart className="w-16 h-16 text-red-500 mx-auto animate-pulse" fill="currentColor" />
           </div>
 
-          {/* Message 1 */}
+          {/* Messages */}
           <div
             className={`transition-all duration-1000 transform ${
               showMessage1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -91,7 +85,6 @@ function App() {
             </h1>
           </div>
 
-          {/* Message 2 */}
           <div
             className={`transition-all duration-1000 transform ${
               showMessage2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -104,7 +97,6 @@ function App() {
             </p>
           </div>
 
-          {/* Message 3 */}
           <div
             className={`transition-all duration-1000 transform ${
               showMessage3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -123,18 +115,20 @@ function App() {
           >
             <div className="bg-gradient-to-r from-yellow-200 to-pink-200 rounded-2xl p-6 border-4 border-white shadow-inner">
               <div className="w-full rounded-xl overflow-hidden shadow-lg">
-                <img 
-                  src="/src/assets/bangaram.jpg" 
-                  alt="Special photo for Aishu" 
+                <img
+                  src="https://i.postimg.cc/5NhGDZHb/bangaram.jpg"
+                  alt="Special photo for Aishu"
                   className="w-full h-auto object-cover rounded-xl border-4 border-white shadow-md"
                   style={{ maxHeight: '400px' }}
                 />
               </div>
-              <p className="text-center text-pink-600 font-medium mt-4 text-lg">💕 For my beautiful Aishu 💕</p>
+              <p className="text-center text-pink-600 font-medium mt-4 text-lg">
+                💕 For my beautiful Aishu 💕
+              </p>
             </div>
           </div>
 
-          {/* Decorative Elements */}
+          {/* Decorative Hearts */}
           <div className="flex justify-center space-x-4 mt-8">
             <span className="text-2xl animate-bounce">💛</span>
             <span className="text-2xl animate-bounce delay-100">🌻</span>
