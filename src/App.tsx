@@ -91,9 +91,9 @@ function App() {
             }`}
           >
             <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed text-center">
-              <span className="text-pink-600 font-semibold">Kopam lo kuda bagunav</span>{' '}
-              <span className="text-gray-600">but</span>{' '}
-              <span className="text-green-600 font-semibold">navuthe inka bagunthav</span> 😊
+              <span className="text-pink-600 font-semibold">nadhe thapu urke sodhi vagi  </span>{' '}
+              <span className="text-gray-600">chirak</span>{' '}
+              <span className="text-green-600 font-semibold">thepisthuna </span> 😅
             </p>
           </div>
 
@@ -103,7 +103,7 @@ function App() {
             }`}
           >
             <p className="text-lg md:text-xl text-gray-600 mb-8 italic text-center">
-              <span className="text-purple-600 font-medium">Kavalante nuve chusuko</span> 💕
+              <span className="text-purple-600 font-medium">Na bangram epudu ela navuthu happy ga undali</span> 💕
             </p>
           </div>
 
@@ -116,14 +116,14 @@ function App() {
             <div className="bg-gradient-to-r from-yellow-200 to-pink-200 rounded-2xl p-6 border-4 border-white shadow-inner">
               <div className="w-full rounded-xl overflow-hidden shadow-lg">
                 <img
-                  src="https://i.postimg.cc/5NhGDZHb/bangaram.jpg"
+                  src="https://i.postimg.cc/VLhy8qjY/Whats-App-Image-2025-10-07-at-17-33-30-86176874.jpg"
                   alt="Special photo for Aishu"
                   className="w-full h-auto object-cover rounded-xl border-4 border-white shadow-md"
                   style={{ maxHeight: '400px' }}
                 />
               </div>
               <p className="text-center text-pink-600 font-medium mt-4 text-lg">
-                💕 For my beautiful Aishu 💕
+                💕 For my beautiful Aishu babes 💕
               </p>
             </div>
           </div>
